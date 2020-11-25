@@ -1,0 +1,35 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.text-input-field {
+  padding: 24px 12px;
+  width: 50%;
+  border-radius: 7px;
+  font-size: 24px;
+}
+
+.text-input-field:focus {
+  outline: none;
+}
+
+.enter-room-button {
+  margin-top: 2rem;
+  background: #31a24c;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 7px;
+  padding: 1rem 2rem;
+}
+
+.linkToRoom {
+  font-size: 28px;
+  width: 100%;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
