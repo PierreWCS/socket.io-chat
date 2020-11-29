@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './ChatRoom.css';
-import useChat from '../useChat';
+import useChat from '../../useChat';
 import { useHistory } from 'react-router-dom';
 
 import { Button } from 'baseui/button';
