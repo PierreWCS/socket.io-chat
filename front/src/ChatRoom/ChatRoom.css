@@ -45,6 +45,25 @@
   margin-right: auto;
 }
 
+.message-time {
+  width: 55%;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  color: gray;
+}
+
+.my-message-time {
+  /* text-align: end; */
+  padding: 0 8px;
+  margin-left: auto;
+}
+
+.received-message-time {
+  padding: 0 8px;
+  margin-right: auto;
+}
+
 form {
   display: flex;
   align-items: flex-start;
@@ -60,20 +79,7 @@ form {
   box-sizing: border-box;
 }
 
-.send-message-button {
-  font-size: 28px;
-  font-weight: 600;
-  color: white;
-  background: #31a24c;
-  padding: 1rem;
-  border: none;
-  box-sizing: border-box;
-  width: 20%;
-  height: 100%;
-}
-
 .messages-container,
-.new-message-input-field,
-.send-message-button {
+.new-message-input-field {
   border-color: #9a9a9a;
 }

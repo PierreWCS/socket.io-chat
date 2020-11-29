@@ -18,6 +18,8 @@ const useChat = (roomId) => {
       const incomingMessage = {
         ...message,
         ownedByCurrentUser: message.senderId === socketRef.current.id,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
       };
       setMessages((messages) => [...messages, incomingMessage]);
     });
