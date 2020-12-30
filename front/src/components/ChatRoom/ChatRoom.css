@@ -1,9 +1,4 @@
 .chat-room-container {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
   margin: 16px;
@@ -22,6 +17,7 @@
 
 .messages-list {
   list-style-type: none;
+  height: 65vh;
   padding: 0;
 }
 
@@ -44,23 +40,43 @@
   margin-right: auto;
 }
 
-.message-time {
-  width: 55%;
-  margin: 8px;
+.messageInfos {
   display: flex;
-  flex-direction: column;
-  color: gray;
+  width: 57%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.my-message-time {
-  /* text-align: end; */
-  padding: 0 8px;
+.myMessageInfos {
   margin-left: auto;
 }
 
-.received-message-time {
-  padding: 0 8px;
+.receivedMessageInfos {
   margin-right: auto;
+}
+
+.myUsername {
+  width: 55%;
+  margin: 0.3rem 0;
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.receivedUsername {
+  width: 55%;
+  margin: 0.3rem 1rem;
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.message-time {
+  margin: 0.3rem 1rem;
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.received-message-time {
+  margin: 0.3rem 0.5rem;
 }
 
 form {
