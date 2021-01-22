@@ -1,74 +1,86 @@
-import React, { useState } from 'react';
-
-import './ChatRoom.css';
-import useChat from '../../useChat';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
-import ArrowLeft from 'baseui/icon/arrow-left';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
+import './ChatRoom.css';
+import useChat from '../../useChat';
+import UserList from './UserList';
+import isUserConnected from '../../utils/isConnected';
 
 const ChatRoom = (props) => {
+  const scrollRef = useRef(null);
+  const [newMessage, setNewMessage] = useState('');
+
   const username = localStorage.getItem('username');
   const { roomId } = props.match.params;
   const { messages, sendMessage, users } = useChat(roomId, username);
-  const [newMessage, setNewMessage] = useState('');
-  const history = useHistory();
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
   };
 
   const handleSendMessage = () => {
-    sendMessage(newMessage, username);
-    setNewMessage('');
+    if (newMessage.length > 0) {
+      sendMessage(newMessage, username);
+      setNewMessage('');
+    }
   };
 
-  return (
-    <div className="chat-room-container">
-      <div style={{ width: '15rem' }}>
-        <Button
-          startEnhancer={() => <ArrowLeft size={24} />}
-          onClick={() => {
-            history.push('/');
-          }}
-        >
-          Back to home
-        </Button>
-      </div>
-      <h1 className="room-name">Room: {roomId}</h1>
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behaviour: 'smooth' });
+    }
+  }, [messages]);
 
-      <div style={{ display: 'flex' }}>
-        <div style={{ width: '80%', height: '75vh' }}>
-          <div className="messages-container">
-            <ol className="messages-list">
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '2rem',
+        height: '80vh',
+        boxSizing: 'border-box',
+      }}
+    >
+      {isUserConnected()}
+      <h1 style={{ marginTop: 0 }}>Room: {roomId}</h1>
+
+      <div style={{ display: 'flex', height: '70%' }}>
+        <div style={{ width: '80%', height: '100%' }}>
+          <div
+            style={{
+              flex: 1,
+              height: '100%',
+              overflow: 'auto',
+              border: '1px solid black',
+              boxSizing: 'border-box',
+            }}
+          >
+            <ol
+              style={{
+                listStyleType: 'none',
+                padding: 0,
+              }}
+            >
               {messages.map((message, i) => (
-                <div key={i}>
-                  <div
-                    className={`messageInfos ${message.ownedByCurrentUser ? 'myMessageInfos' : 'receivedMessageInfos'}`}
-                  >
+                <div ref={scrollRef} key={i}>
+                  <div className={`messageInfos ${message.ownedByCurrentUser ? 'myMessageInfos' : 'receivedMessageInfos'}`}>
                     <p className={`messageUsername ${message.ownedByCurrentUser ? 'myUsername' : 'receivedUsername'}`}>
                       {message.username}
                     </p>
-                    <p
-                      className={`message-time ${
-                        message.ownedByCurrentUser ? 'my-message-time' : 'received-message-time'
-                      }`}
-                    >
+                    <p className={`message-time ${message.ownedByCurrentUser ? 'my-message-time' : 'received-message-time'}`}>
                       {message.time}
                     </p>
                   </div>
-                  <li className={`message-item ${message.ownedByCurrentUser ? 'my-message' : 'received-message'}`}>
-                    {message.body}
-                  </li>
+                  <li className={`message-item ${message.ownedByCurrentUser ? 'my-message' : 'received-message'}`}>{message.body}</li>
                 </div>
               ))}
             </ol>
           </div>
           <form
-            style={{ paddingTop: '1rem' }}
+            style={{ paddingTop: '.5rem' }}
             onSubmit={(e) => {
               e.preventDefault();
               handleSendMessage();
@@ -78,21 +90,7 @@ const ChatRoom = (props) => {
             <Button type="submit">Send</Button>
           </form>
         </div>
-        <div style={{ width: '20%', backgroundColor: '#dddd', padding: '1rem', boxSizing: 'border-box' }}>
-          <h4>Users in the room</h4>
-          <div>
-            {users.length &&
-              users.map((user) => (
-                <div key={user.id} style={{ display: 'flex', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon={faUserCircle} />
-                  <p style={{ paddingLeft: '1rem' }}>
-                    {user.username}
-                    {user.username === username && ' (You)'}
-                  </p>
-                </div>
-              ))}
-          </div>
-        </div>
+        <UserList username={username} users={users} />
       </div>
     </div>
   );

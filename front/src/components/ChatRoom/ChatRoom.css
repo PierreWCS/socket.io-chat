@@ -1,26 +1,3 @@
-.chat-room-container {
-  display: flex;
-  flex-direction: column;
-  margin: 16px;
-}
-
-.room-name {
-  margin-top: 0;
-}
-
-.messages-container {
-  flex: 1;
-  min-height: 100px;
-  overflow: auto;
-  border: 1px solid black;
-}
-
-.messages-list {
-  list-style-type: none;
-  height: 65vh;
-  padding: 0;
-}
-
 .message-item {
   width: 55%;
   margin: 8px;
@@ -57,26 +34,26 @@
 
 .myUsername {
   width: 55%;
-  margin: 0.3rem 0;
+  margin: 0.1rem 0;
   color: gray;
   font-size: 0.8rem;
 }
 
 .receivedUsername {
   width: 55%;
-  margin: 0.3rem 1rem;
+  margin: 0.1rem 1rem;
   color: gray;
   font-size: 0.8rem;
 }
 
 .message-time {
-  margin: 0.3rem 1rem;
+  margin: 0.1rem 0.7rem;
   color: gray;
   font-size: 0.8rem;
 }
 
 .received-message-time {
-  margin: 0.3rem 0.5rem;
+  margin: 0.1rem 0rem;
 }
 
 form {

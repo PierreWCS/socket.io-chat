@@ -1,31 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { Display2 } from 'baseui/typography';
 
 import './Home.css';
+import isUserConnected from '../../utils/isConnected';
 
 const Home = () => {
   const [roomName, setRoomName] = useState('');
-  const [isNotLoggedIn, setIsNotLoggedIn] = useState(false);
   const history = useHistory();
 
-  const isUserConnected = () => {
-    let stockUsername = localStorage.getItem('username');
-    if (!stockUsername) {
-      setIsNotLoggedIn(true);
-    } else {
-      setIsNotLoggedIn(false);
-    }
-  };
-
-  useEffect(() => {
-    isUserConnected();
-  }, []);
-
   const handleOnClick = () => {
-    history.push('/' + roomName);
+    history.push('/room/' + roomName);
   };
 
   const handleRoomNameChange = (event) => {
@@ -34,8 +21,7 @@ const Home = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="home-container">
-      {isNotLoggedIn && <Redirect to="/connect" />}
-
+      {isUserConnected()}
       <Display2 marginBottom="scale1000">Create a chat room or join one !</Display2>
 
       <div className="inputContainerHome">

@@ -22,12 +22,11 @@ const ConnectPage = () => {
     <div
       style={{
         width: '100%',
-        height: '100vh',
+        height: '80vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
       }}
     >
       {isUserLoggedIn && <Redirect to="/" />}
