@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { AppNavBar, setItemActive } from 'baseui/app-nav-bar';
 import { DeleteAlt } from 'baseui/icon';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './NavBar.css';
 import isUserConnected from '../../utils/isConnected';
 
-const NavBar = () => {
+const NavBar = ({ username, setUsername }) => {
   const history = useHistory();
   const [mainItems, setMainItems] = useState([
     { label: 'Rooms', link: '/' },
@@ -17,6 +17,7 @@ const NavBar = () => {
     console.log(selectedItem);
     if (selectedItem.label === 'Disconnect') {
       localStorage.clear();
+      setUsername('');
       history.push('/');
     }
   };
@@ -24,8 +25,6 @@ const NavBar = () => {
   const handleMainBarItem = (selectedItem) => {
     console.log(selectedItem);
   };
-
-  const userInfos = localStorage.getItem('username');
 
   return (
     <>
@@ -47,8 +46,8 @@ const NavBar = () => {
           setMainItems((prev) => setItemActive(prev, item));
           handleMainBarItem(item);
         }}
-        username={userInfos && userInfos.length && userInfos}
-        userItems={userInfos ? [{ icon: DeleteAlt, label: 'Disconnect' }] : []}
+        username={username && username.length && username}
+        userItems={username ? [{ icon: DeleteAlt, label: 'Disconnect' }] : []}
         onUserItemSelect={(item) => handleUserItem(item)}
       />
     </>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { Display2 } from 'baseui/typography';

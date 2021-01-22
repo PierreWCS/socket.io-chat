@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Client as Styletron } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider } from 'styletron-react';
@@ -13,13 +13,15 @@ import NavBar from './components/NavBar/NavBar';
 const engine = new Styletron();
 
 function App() {
+  const [username, setUsername] = useState(localStorage.getItem('username'));
+
   return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
         <Router>
-          <NavBar />
+          <NavBar username={username} setUsername={setUsername} />
           <Route exact path="/" component={Home} />
-          <Route path="/connect" component={ConnectPage} />
+          <Route path="/connect" component={() => <ConnectPage username={username} setUsername={setUsername} />} />
           <Route path="/room/:roomId" component={ChatRoom} />
         </Router>
       </BaseProvider>
