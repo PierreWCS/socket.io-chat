@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Client as Styletron } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider } from 'styletron-react';
@@ -9,19 +9,11 @@ import Home from './components/Home/Home';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import ConnectPage from './components/Connect/ConnectPage';
 import NavBar from './components/NavBar/NavBar';
-import isUserConnected from './utils/isConnected';
 
 const engine = new Styletron();
 
 function App() {
   const [username, setUsername] = useState('');
-  const localData = isUserConnected();
-
-  useEffect(() => {
-    console.log('localData', localData);
-    console.log('username', username);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <StyletronProvider value={engine}>

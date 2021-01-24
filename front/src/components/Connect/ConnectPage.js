@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Input } from 'baseui/input';
 import { Button, SIZE } from 'baseui/button';
 import { Display1, Display2 } from 'baseui/typography';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const ConnectPage = ({ username, setUsername }) => {
-  const history = useHistory();
   const [isError, setIsError] = useState(false);
   const [user, setUser] = useState('');
 

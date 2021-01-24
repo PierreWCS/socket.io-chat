@@ -4,7 +4,6 @@ import { DeleteAlt } from 'baseui/icon';
 import { useHistory } from 'react-router-dom';
 
 import './NavBar.css';
-import isUserConnected from '../../utils/isConnected';
 
 const NavBar = ({ username, setUsername }) => {
   const history = useHistory();
