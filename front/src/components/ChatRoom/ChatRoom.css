@@ -58,23 +58,3 @@
 .received-message-time {
   margin: 0.1rem 0rem;
 }
-
-form {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  height: 8rem;
-}
-
-.new-message-input-field {
-  font-size: 20px;
-  padding: 24px 12px;
-  width: 80%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.messages-container,
-.new-message-input-field {
-  border-color: #9a9a9a;
-}

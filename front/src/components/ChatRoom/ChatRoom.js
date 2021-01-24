@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button } from 'baseui/button';
-import { Input } from 'baseui/input';
 
 import './ChatRoom.css';
 import useChat from '../../useChat';
 import UserList from './UserList';
 import { Display3 } from 'baseui/typography';
+import ChatContainer from './ChatContainer';
 
 const ChatRoom = (props) => {
-  const scrollRef = useRef(null);
   const [newMessage, setNewMessage] = useState('');
 
   const username = localStorage.getItem('username');
@@ -27,12 +25,6 @@ const ChatRoom = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behaviour: 'smooth' });
-    }
-  }, [messages]);
-
   return (
     <div
       style={{
@@ -48,48 +40,12 @@ const ChatRoom = (props) => {
       <Display3 style={{ padding: '1rem 0', margin: 0 }}>Room: {roomId}</Display3>
 
       <div style={{ display: 'flex', height: '70%', width: '80%' }}>
-        <div style={{ width: '80%', height: '100%' }}>
-          <div
-            style={{
-              flex: 1,
-              height: '100%',
-              overflow: 'auto',
-              border: '1px solid black',
-              boxSizing: 'border-box',
-            }}
-          >
-            <ol
-              style={{
-                listStyleType: 'none',
-                padding: 0,
-              }}
-            >
-              {messages.map((message, i) => (
-                <div ref={scrollRef} key={i}>
-                  <div className={`messageInfos ${message.ownedByCurrentUser ? 'myMessageInfos' : 'receivedMessageInfos'}`}>
-                    <p className={`messageUsername ${message.ownedByCurrentUser ? 'myUsername' : 'receivedUsername'}`}>
-                      {message.username}
-                    </p>
-                    <p className={`message-time ${message.ownedByCurrentUser ? 'my-message-time' : 'received-message-time'}`}>
-                      {message.time}
-                    </p>
-                  </div>
-                  <li className={`message-item ${message.ownedByCurrentUser ? 'my-message' : 'received-message'}`}>{message.body}</li>
-                </div>
-              ))}
-            </ol>
-          </div>
-          <form
-            style={{ paddingTop: '.5rem' }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSendMessage();
-            }}
-          >
-            <Input value={newMessage} onChange={handleNewMessageChange} placeholder="Write message..." />
-            <Button type="submit">Send</Button>
-          </form>
-        </div>
+        <ChatContainer
+          handleNewMessageChange={handleNewMessageChange}
+          handleSendMessage={handleSendMessage}
+          messages={messages}
+          newMessage={newMessage}
+        />
         <UserList username={username} users={users} />
       </div>
     </div>

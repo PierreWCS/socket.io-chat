@@ -9,7 +9,6 @@ const ConnectPage = ({ username, setUsername }) => {
   const [user, setUser] = useState('');
 
   const handleUsernameSubmit = () => {
-    console.log('guess whos there');
     if (!user) {
       setIsError(true);
     } else {
@@ -58,7 +57,9 @@ const ConnectPage = ({ username, setUsername }) => {
             }}
             id="username"
             error={isError && !user.length}
-            onChange={(e) => setUser(e.target.value)}
+            onChange={(e) => {
+              setUser(e.target.value);
+            }}
             value={user}
           />
           <Button size={SIZE.large} type="submit">
