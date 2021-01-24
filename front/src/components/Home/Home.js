@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { Display2 } from 'baseui/typography';
 
 import './Home.css';
-import isUserConnected from '../../utils/isConnected';
 
-const Home = () => {
+const Home = ({ username }) => {
   const [roomName, setRoomName] = useState('');
   const history = useHistory();
 
@@ -21,7 +20,7 @@ const Home = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="home-container">
-      {isUserConnected()}
+      {username ? null : <Redirect to="/connect" />}
       <Display2 marginBottom="scale1000">Create a chat room or join one !</Display2>
 
       <div className="inputContainerHome">
@@ -34,7 +33,7 @@ const Home = () => {
           }}
           type="submit"
         >
-          Join room
+          Ok
         </Button>
       </div>
     </form>

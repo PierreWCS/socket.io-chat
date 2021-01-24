@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const UserList = ({ users, username }) => (
-  <div style={{ width: '20%', backgroundColor: '#dddd', padding: '1rem', boxSizing: 'border-box' }}>
+  <div style={{ width: '15%', backgroundColor: '#dddd', padding: '1rem', boxSizing: 'border-box' }}>
     <h4>Users in the room</h4>
     <div>
       {users.length &&

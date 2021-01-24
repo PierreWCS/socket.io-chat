@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 
 import './ChatRoom.css';
 import useChat from '../../useChat';
 import UserList from './UserList';
-import isUserConnected from '../../utils/isConnected';
+import { Display3 } from 'baseui/typography';
 
 const ChatRoom = (props) => {
   const scrollRef = useRef(null);
@@ -42,12 +41,13 @@ const ChatRoom = (props) => {
         padding: '2rem',
         height: '80vh',
         boxSizing: 'border-box',
+        alignItems: 'center',
       }}
     >
-      {isUserConnected()}
-      <h1 style={{ marginTop: 0 }}>Room: {roomId}</h1>
+      {!username && <Redirect to="/connect" />}
+      <Display3 style={{ padding: '1rem 0', margin: 0 }}>Room: {roomId}</Display3>
 
-      <div style={{ display: 'flex', height: '70%' }}>
+      <div style={{ display: 'flex', height: '70%', width: '80%' }}>
         <div style={{ width: '80%', height: '100%' }}>
           <div
             style={{

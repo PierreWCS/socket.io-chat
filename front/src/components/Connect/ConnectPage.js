@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { Input } from 'baseui/input';
 import { Button, SIZE } from 'baseui/button';
 import { Display1, Display2 } from 'baseui/typography';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
-const ConnectPage = () => {
-  const [username, setUsername] = useState('');
+const ConnectPage = ({ username, setUsername }) => {
+  const history = useHistory();
   const [isError, setIsError] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [user, setUser] = useState('');
 
   const handleUsernameSubmit = () => {
-    if (!username) {
+    console.log('guess whos there');
+    if (!user) {
       setIsError(true);
     } else {
-      localStorage.setItem('username', username);
-      setIsUserLoggedIn(true);
+      localStorage.setItem('username', user);
+      setUsername(user);
     }
   };
 
@@ -29,7 +30,7 @@ const ConnectPage = () => {
         justifyContent: 'center',
       }}
     >
-      {isUserLoggedIn && <Redirect to="/" />}
+      {username && <Redirect to="/" />}
       <Display1 marginBottom="scale1000">Welcome !</Display1>
       <Display2 marginBottom="scale1000">Please select a username</Display2>
       <form
@@ -40,7 +41,7 @@ const ConnectPage = () => {
         style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
       >
         <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-          {isError && !username.length && (
+          {isError && !user.length && (
             <label style={{ position: 'absolute', color: 'red', paddingBottom: '5.5rem' }} for="username">
               Please select a username
             </label>
@@ -49,14 +50,17 @@ const ConnectPage = () => {
             overrides={{
               Input: {
                 style: () => ({
-                  padding: '.9rem',
+                  paddingRight: '14px',
+                  paddingTop: '14px',
+                  paddingBottom: '14px',
+                  paddingLeft: '14px',
                 }),
               },
             }}
             id="username"
-            error={isError && !username.length}
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
+            error={isError && !user.length}
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
           />
           <Button size={SIZE.large} type="submit">
             Confirm

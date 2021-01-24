@@ -5,7 +5,7 @@ const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
 const USER_LEFT_ROOM = 'userLeftTheRoom';
 const USER_ENTERED = 'userEnteredTheRoom';
 
-const SOCKET_SERVER_URL = 'http://localhost:4000';
+const SOCKET_SERVER_URL = 'https://pierre-chat-app-server.herokuapp.com/'; /* || 'http://localhost:4000'; */
 
 const useChat = (roomId, username) => {
   const [messages, setMessages] = useState([]);

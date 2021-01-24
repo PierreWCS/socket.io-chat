@@ -32,22 +32,25 @@
   margin-right: auto;
 }
 
-.myUsername {
+.receivedUsername {
   width: 55%;
-  margin: 0.1rem 0;
+  margin: 0;
+  padding: 0.1rem 0.5rem;
   color: gray;
   font-size: 0.8rem;
 }
 
-.receivedUsername {
+.myUsername {
   width: 55%;
-  margin: 0.1rem 1rem;
+  margin: 0;
+  padding: 0.1rem 0.5rem;
   color: gray;
   font-size: 0.8rem;
 }
 
 .message-time {
-  margin: 0.1rem 0.7rem;
+  padding: 0.1rem 1rem;
+  margin: 0;
   color: gray;
   font-size: 0.8rem;
 }

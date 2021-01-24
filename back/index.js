@@ -13,6 +13,8 @@ io.on('connection', (socket) => {
   const { roomId, username } = socket.handshake.query;
   socket.join(roomId);
 
+  console.log('User connected', username);
+
   let currentClient = { id: socket.id, username: username, roomID: roomId };
 
   // Get all the connected users
@@ -59,6 +61,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT || PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });

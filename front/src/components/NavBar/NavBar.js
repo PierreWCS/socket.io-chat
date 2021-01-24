@@ -18,7 +18,7 @@ const NavBar = ({ username, setUsername }) => {
     if (selectedItem.label === 'Disconnect') {
       localStorage.clear();
       setUsername('');
-      history.push('/');
+      history.push('/connect');
     }
   };
 
@@ -27,30 +27,28 @@ const NavBar = ({ username, setUsername }) => {
   };
 
   return (
-    <>
-      {isUserConnected()}
-      <AppNavBar
-        title={
-          <p
-            className="navBarTitle"
-            onClick={() => {
-              history.push('/');
-            }}
-          >
-            Chat app
-          </p>
-        }
-        mainItems={mainItems}
-        onMainItemSelect={(item) => {
-          history.push(item.link);
-          setMainItems((prev) => setItemActive(prev, item));
-          handleMainBarItem(item);
-        }}
-        username={username && username.length && username}
-        userItems={username ? [{ icon: DeleteAlt, label: 'Disconnect' }] : []}
-        onUserItemSelect={(item) => handleUserItem(item)}
-      />
-    </>
+    <AppNavBar
+      title={
+        <p
+          className="navBarTitle"
+          onClick={() => {
+            console.log('back to main');
+            history.push('/');
+          }}
+        >
+          Chat app
+        </p>
+      }
+      mainItems={mainItems}
+      onMainItemSelect={(item) => {
+        history.push(item.link);
+        setMainItems((prev) => setItemActive(prev, item));
+        handleMainBarItem(item);
+      }}
+      username={username && username.length && username}
+      userItems={username ? [{ icon: DeleteAlt, label: 'Disconnect' }] : []}
+      onUserItemSelect={(item) => handleUserItem(item)}
+    />
   );
 };
 
