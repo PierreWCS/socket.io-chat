@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from 'baseui/input';
 import { Button, SIZE } from 'baseui/button';
-import { Display1, Display2 } from 'baseui/typography';
+import { Display3, Display2 } from 'baseui/typography';
 import { Redirect } from 'react-router-dom';
 
 const ConnectPage = ({ username, setUsername }) => {
@@ -29,19 +29,21 @@ const ConnectPage = ({ username, setUsername }) => {
       }}
     >
       {username && <Redirect to="/" />}
-      <Display1 marginBottom="scale1000">Welcome !</Display1>
-      <Display2 marginBottom="scale1000">Please select a username</Display2>
+      <Display2 marginBottom="scale1000">Welcome !</Display2>
+      <Display3 style={{ textAlign: 'center' }} marginBottom="scale1000">
+        Please select a username
+      </Display3>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleUsernameSubmit();
         }}
-        style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+        style={{ width: '70%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
       >
         <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
           {isError && !user.length && (
             <label style={{ position: 'absolute', color: 'red', paddingBottom: '5.5rem' }} for="username">
-              Please select a username
+              Select a username
             </label>
           )}
           <Input

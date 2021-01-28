@@ -4,8 +4,6 @@ import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { Display2 } from 'baseui/typography';
 
-import './Home.css';
-
 const Home = ({ username }) => {
   const [roomName, setRoomName] = useState('');
   const history = useHistory();
@@ -19,11 +17,29 @@ const Home = ({ username }) => {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="home-container">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '80vh',
+      }}
+    >
       {username ? null : <Redirect to="/connect" />}
-      <Display2 marginBottom="scale1000">Create a chat room or join one !</Display2>
+      <Display2 style={{ textAlign: 'center' }} marginBottom="scale1000">
+        Create a chat room or join one !
+      </Display2>
 
-      <div className="inputContainerHome">
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <div style={{ width: '70%' }}>
           <Input type="text" placeholder="Room name .." value={roomName} onChange={handleRoomNameChange} />
         </div>

@@ -7,10 +7,7 @@ import './NavBar.css';
 
 const NavBar = ({ username, setUsername }) => {
   const history = useHistory();
-  const [mainItems, setMainItems] = useState([
-    { label: 'Rooms', link: '/' },
-    { label: 'About us', link: '/about' },
-  ]);
+  const [mainItems, setMainItems] = useState([{ label: 'Rooms', link: '/' }]);
 
   const handleUserItem = (selectedItem) => {
     console.log(selectedItem);

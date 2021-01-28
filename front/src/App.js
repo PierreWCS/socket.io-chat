@@ -13,7 +13,8 @@ import NavBar from './components/NavBar/NavBar';
 const engine = new Styletron();
 
 function App() {
-  const [username, setUsername] = useState('');
+  const localData = localStorage.getItem('username');
+  const [username, setUsername] = useState(localData || '');
 
   return (
     <StyletronProvider value={engine}>

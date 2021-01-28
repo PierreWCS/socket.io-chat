@@ -39,6 +39,7 @@ const useChat = (roomId, username) => {
     return () => {
       socketRef.current.disconnect();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   const sendMessage = (messageBody, username) => {

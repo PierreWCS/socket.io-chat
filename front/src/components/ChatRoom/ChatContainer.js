@@ -12,14 +12,12 @@ const ChatContainer = ({ messages, handleSendMessage, newMessage, handleNewMessa
   }, [messages]);
 
   return (
-    <div style={{ width: '80%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <div
         style={{
           flex: 1,
           height: '100%',
           overflow: 'auto',
-          border: '1px solid black',
-          boxSizing: 'border-box',
         }}
       >
         <ol style={{ listStyleType: 'none', padding: 0 }}>
@@ -35,7 +33,7 @@ const ChatContainer = ({ messages, handleSendMessage, newMessage, handleNewMessa
         </ol>
       </div>
       <form
-        style={{ paddingTop: '.5rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', height: '8rem' }}
+        style={{ paddingTop: '.5rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}
         onSubmit={(e) => {
           e.preventDefault();
           handleSendMessage();

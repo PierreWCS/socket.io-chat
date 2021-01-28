@@ -19,7 +19,7 @@
 
 .messageInfos {
   display: flex;
-  width: 57%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
 }
@@ -33,15 +33,13 @@
 }
 
 .receivedUsername {
-  width: 55%;
   margin: 0;
-  padding: 0.1rem 0.5rem;
+  padding: 0.1rem 0.5rem 0.1rem 1rem;
   color: gray;
   font-size: 0.8rem;
 }
 
 .myUsername {
-  width: 55%;
   margin: 0;
   padding: 0.1rem 0.5rem;
   color: gray;
