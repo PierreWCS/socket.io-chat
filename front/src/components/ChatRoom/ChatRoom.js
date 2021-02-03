@@ -39,7 +39,7 @@ const ChatRoom = (props) => {
       {!username && <Redirect to="/connect" />}
       <Display3 style={{ padding: '1rem 0', margin: 0 }}>Room: {roomId}</Display3>
 
-      <div style={{ display: 'flex', height: '70%', width: '80%' }}>
+      <div style={{ display: 'flex', height: '70%', width: '90%' }}>
         <ChatContainer
           handleNewMessageChange={handleNewMessageChange}
           handleSendMessage={handleSendMessage}
